@@ -6,8 +6,33 @@
 
 /// answer to Tick1
 // the header given here is correct.
-let polarToCartesianApprox (r,theta) n = 
-    failwithf "Tick1 not yet implemented" // replace this line with your top-level implementation
+let polarToCartesianApprox (r,theta) n =
+
+    let fact x =
+        if x = 0
+        then 1.0
+        else List.reduce (*) [1.0..float x]
+
+    let cos (r, theta) n =
+        let costerm i = 
+            if i % 2 = 1
+            then 0.0
+            else r * ((-1.0) ** float (i / 2)) * (theta ** (float i)) / (float (fact i))
+        
+        [0..n] |> List.map costerm |> List.reduce (+)
+    
+    let sin (r, theta) n =
+        let sinterm i = 
+            if i % 2 = 0
+            then 0.0
+            else r * ((-1.0) ** float ((i - 1) / 2)) * (theta ** (float i)) / (float (fact i))
+        
+        [0..n] |> List.map sinterm |> List.reduce (+) 
+    
+    (cos (r, theta) n, sin (r,theta) n)
+
+
+    //failwithf "Tick1 not yet implemented" // replace this line with your top-level implementation
 
 
 //--------------------testbench code - DO NOT CHANGE-----------------------------//
