@@ -32,9 +32,6 @@ let polarToCartesianApprox (r,theta) n =
     (cos (r, theta) n, sin (r,theta) n)
 
 
-    //failwithf "Tick1 not yet implemented" // replace this line with your top-level implementation
-
-
 //--------------------testbench code - DO NOT CHANGE-----------------------------//
 
 /// used to make generate testbench data
